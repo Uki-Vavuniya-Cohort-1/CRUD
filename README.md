@@ -5,8 +5,8 @@
 This repository demonstrates the basic operations of CRUD (Create, Read, Update, Delete) in software development.
 
 ## Technologies Used
-- Programming Language: $JavaScript$
-- Framework: $NodeJS,Mongoose,Express$
+- Programming Language: JavaScript
+- Framework: NodeJS,Mongoose,Express
 
 
 ## Features
