@@ -1,0 +1,28 @@
+{
+  "name": "postman",
+  "version": "1.0.0",
+  "description": "Postman_connect",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uki-Vavuniya-Cohort-1/CRUD.git"
+  },
+  "author": "Vimal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Uki-Vavuniya-Cohort-1/CRUD/issues"
+  },
+  "homepage": "https://github.com/Uki-Vavuniya-Cohort-1/CRUD#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
