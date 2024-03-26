@@ -11,7 +11,7 @@ const express = require('express');
 const app = express();
 app.use(express.json())
 
-app.listen(3000, () =>{
+app.listen(3001, () =>{
     console.log('your express is connected')
 })
 
@@ -19,6 +19,7 @@ app.get('/home',(req,res) =>{
     res.send('welcome to home page')
 })
 
+//post 
 
 app.post("/User/create", async(req, res)=>{
    try{
@@ -31,13 +32,47 @@ app.post("/User/create", async(req, res)=>{
       console.log(error);
    }
 })
+
+//get
 app.get('/userdata', async (req, res) => {
     try {
         const user = await users.find();
         console.log(user);
         res.status(200).json(user);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+//update
+app.put('/userdata/:id',async (req,res) =>{
+    try{
+        const {id}= req.params
+        await users.findByIdAndUpdate(id,req.body)
+        const User=await users.findById(id)
+        res.status(200).json(User)
+
+    }
+    catch(error){
+        console.log(error);
+    }
+})
+
+//Delete
+app.delete('/userdata/:id',async (req,res) =>{
+    try{
+        const {id}= req.params
+        await users.findByIdAndDelete(id,req.body)
+        const User=await users.findById(id)
+        res.status(200).json(User)
+        if(!User) {
+            return res.status(404).json({message: "Product not found"})
+        }
+
+    }
+    catch(error){
+        console.log(error);
+    }
+})
