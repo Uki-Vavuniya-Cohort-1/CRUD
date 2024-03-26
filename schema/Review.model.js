@@ -13,7 +13,7 @@ const schema = new Mongoose.Schema({
     UserID: {
         type: Mongoose.Schema.Types.ObjectId,
         ref: "User",
-        // unique: true
+        unique: true
     }
 });
 const Model = Mongoose.model('Review', schema);

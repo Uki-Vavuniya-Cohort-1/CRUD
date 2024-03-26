@@ -29,32 +29,6 @@ app.post('/User/create', async (req, res) => {
       }
 });      
 
-// app.get('/User/create', async (req, res) => {
-//    try {
-//       const reviews = await User.find(); 
-//       res.json(User);
-//     } catch (error) {
-//       res.status(500).send(error);
-//     }
-// });  
-
-// app.get('/Review/:id', (req, res) => {
-//    // productId = req.params.id;
-//    res.send(Review.find(user => user.id === parseInt(req.params.id)))
-//    });
-
-app.get('/Review/:id', async (req, res) => {
-   try {
-     const review = await Review.findById(req.params.id);
-     if (!review) {
-       return res.status(404).send('Review not found');
-     }
-     res.json(review);
-   } catch (error) {
-     res.status(500).send(error.message);
-   }
- });
-
 app.post('/Product/create', async (req, res) => {
    try {
      const newUser = new Product(req.body);
@@ -83,4 +57,62 @@ app.post('/Payment/create', async (req, res) => {
    } catch (error) {
      res.status(400).send(error);
    }
-});      
+});     
+
+//Get 
+
+app.get('/Review/:id', async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    res.status(200).json(review);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.get('/Review', async (req, res) => {
+ try {
+   const review = await Review.find();
+     res.status(200).json(review);
+ } catch (error) {
+   res.status(400).send(error);
+ }
+});
+
+app.get('/User', async (req, res) => {
+  try {
+    const review = await User.find();
+      res.status(200).json(review);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+ });
+
+
+// Update
+
+app.put('/User/:id', async (req, res) => {
+  try {
+    const {id} = req.params
+    await User.findByIdAndUpdate(id, req.body);
+    const user = await User.findById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+ });
+
+ //Delete
+ 
+ app.delete('/User/:id', async (req,res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    if (!User.findByIdAndDelete(req.params.id)) {
+      res.status(404).send({message: "not found"})
+    }
+    res.status(200).json(await User.findById(id));
+  }
+  catch (error){
+    res.status(400).send(error)
+  }
+ })
